@@ -1,11 +1,14 @@
+#!/bin/sh
+
 set -x
 
 cd ~/
 
-echo "" >> ~/.bashrc
-echo ". ~/dotfiles/bashprompt.sh" >> ~/.bashrc
+SCRIPTSETUP="$0"
 
-# Symlink dotfiles
-ln -s $(pwd)/bin "$HOME/bin"
-ln -s $(pwd)/gitconfig "$HOME/.gitconfig"
-ln -s $(pwd)/gitignore_global "$HOME/.gitignore_global"
+echo $SCRIPTSETUP
+DOTFILESDIRREL=$(dirname $SCRIPTSETUP)
+cd $DOTFILESDIRREL
+DOTFILESDIR=$(pwd -P)
+
+source $DOTFILESDIR/.bash_profile
